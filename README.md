@@ -8,6 +8,8 @@ A live operations dashboard that streams system metrics over **WebSockets** and 
 
 ---
 
+![Pulse — realtime metrics dashboard](docs/screenshot.png)
+
 ## ✨ Highlights
 
 - **Live WebSocket stream** — a Node `ws` server pushes a metrics tick every second; the client renders it instantly.
