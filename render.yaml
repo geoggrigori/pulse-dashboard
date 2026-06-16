@@ -1,0 +1,16 @@
+# Render blueprint — deploy Pulse as a single service.
+# The server builds-in the web app: it serves web/dist (static) AND the
+# WebSocket on the same port, so one service hosts the whole dashboard.
+#
+# In Render: New + → Blueprint → connect this repo. Render reads this file.
+services:
+  - type: web
+    name: pulse-dashboard
+    runtime: node
+    plan: free
+    # --include=dev so Vite/tsx (devDependencies) are available to build & run.
+    buildCommand: npm install --include=dev && npm run build -w web
+    startCommand: npm start -w server
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

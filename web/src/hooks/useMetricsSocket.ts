@@ -6,9 +6,16 @@ const MAX_EVENTS = 60
 
 export type Status = 'connecting' | 'open' | 'closed'
 
-const WS_URL: string =
-  import.meta.env.VITE_WS_URL ??
-  `ws://${typeof location !== 'undefined' ? location.hostname || 'localhost' : 'localhost'}:8787`
+function defaultWsUrl(): string {
+  if (typeof location === 'undefined') return 'ws://localhost:8787'
+  // In production the server serves the app and the WebSocket on the same
+  // origin (https → wss). In dev, Vite serves the app separately, so connect
+  // to the standalone server on :8787.
+  if (location.protocol === 'https:') return `wss://${location.host}`
+  return `ws://${location.hostname || 'localhost'}:8787`
+}
+
+const WS_URL: string = import.meta.env.VITE_WS_URL ?? defaultWsUrl()
 
 /**
  * Subscribes to the metrics WebSocket. Renders the initial snapshot, appends
