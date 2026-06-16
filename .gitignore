@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.vite/
+
+# logs
+*.log
+npm-debug.log*
+
+# env / os / editor
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+*.tsbuildinfo

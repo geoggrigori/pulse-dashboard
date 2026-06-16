@@ -1,0 +1,16 @@
+{
+  "name": "pulse-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Realtime metrics dashboard — WebSocket server + React/Vite frontend with live SVG charts.",
+  "workspaces": ["server", "web"],
+  "scripts": {
+    "dev": "concurrently -n server,web -c green,cyan \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w web",
+    "test": "npm run test -w server",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
