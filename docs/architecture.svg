@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrowBack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a855f7"/>
+    </marker>
+  </defs>
+
+  <!-- canvas background -->
+  <rect x="1" y="1" width="878" height="418" rx="14" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+
+  <!-- ============ SERVER side ============ -->
+  <rect x="40" y="70" width="300" height="280" rx="12" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="190" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2937">server/</text>
+  <text x="190" y="118" text-anchor="middle" font-size="12" fill="#4b5563">Node + ws + TypeScript</text>
+
+  <!-- Simulator -->
+  <rect x="70" y="142" width="240" height="52" rx="9" fill="#ffffff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="190" y="167" text-anchor="middle" font-size="14" font-weight="600" fill="#1f2937">Simulator</text>
+  <text x="190" y="184" text-anchor="middle" font-size="11" fill="#6b7280">bounded random walks</text>
+
+  <!-- arrow Simulator -> RingBuffer -->
+  <line x1="190" y1="194" x2="190" y2="222" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- RingBuffer -->
+  <rect x="70" y="224" width="240" height="52" rx="9" fill="#ffffff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="190" y="249" text-anchor="middle" font-size="14" font-weight="600" fill="#1f2937">RingBuffer</text>
+  <text x="190" y="266" text-anchor="middle" font-size="11" fill="#6b7280">history</text>
+
+  <!-- arrow RingBuffer -> broadcast -->
+  <line x1="190" y1="276" x2="190" y2="298" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- broadcast -->
+  <rect x="70" y="300" width="240" height="34" rx="9" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="190" y="322" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">broadcast() to all clients</text>
+
+  <!-- ============ CLIENT side ============ -->
+  <rect x="540" y="70" width="300" height="280" rx="12" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="690" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2937">web/</text>
+  <text x="690" y="118" text-anchor="middle" font-size="12" fill="#4b5563">React + Vite</text>
+
+  <!-- useMetricsSocket -->
+  <rect x="570" y="142" width="240" height="52" rx="9" fill="#ffffff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="690" y="167" text-anchor="middle" font-size="14" font-weight="600" fill="#1f2937">useMetricsSocket()</text>
+  <text x="690" y="184" text-anchor="middle" font-size="11" fill="#6b7280">rolling time-series state</text>
+
+  <line x1="690" y1="194" x2="690" y2="216" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- KPI cards -->
+  <rect x="570" y="218" width="240" height="34" rx="9" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="690" y="240" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">KPI cards</text>
+
+  <!-- SVG line charts -->
+  <rect x="570" y="258" width="240" height="34" rx="9" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="690" y="280" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">SVG line charts</text>
+
+  <!-- live event feed -->
+  <rect x="570" y="298" width="240" height="34" rx="9" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="690" y="320" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2937">live event feed</text>
+
+  <!-- ============ EDGES between server and client ============ -->
+  <!-- top: snapshot + tick (server -> client) -->
+  <line x1="340" y1="172" x2="570" y2="172" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="455" y="150" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">ws://localhost:8787</text>
+  <text x="455" y="166" text-anchor="middle" font-size="11" fill="#6b7280">snapshot (history) on connect</text>
+  <text x="455" y="190" text-anchor="middle" font-size="11" fill="#6b7280">tick { metric, events } / 1s</text>
+
+  <!-- bottom: reconnect backoff (client -> server) -->
+  <line x1="570" y1="317" x2="340" y2="317" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrowBack)"/>
+  <text x="455" y="338" text-anchor="middle" font-size="11" fill="#7e22ce">reconnect (backoff)</text>
+
+  <!-- title -->
+  <text x="440" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2937">Pulse — realtime metrics pipeline</text>
+</svg>

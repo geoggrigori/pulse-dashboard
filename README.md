@@ -1,5 +1,7 @@
 # Pulse ⚡ — Realtime Metrics Dashboard
 
+**English** · [Português](README.pt.md) · [Español](README.es.md)
+
 A live operations dashboard that streams system metrics over **WebSockets** and renders them with **hand-built SVG charts** — no charting library. KPI cards with trend deltas, two live time-series charts, a streaming event feed, automatic reconnection, and a polished dark UI.
 
 > A focused demo of real-time front-end engineering: WebSocket data flow, rolling time-series state, custom data-viz, and resilient reconnection.
@@ -22,16 +24,7 @@ A live operations dashboard that streams system metrics over **WebSockets** and 
 
 ## 🏗️ Architecture
 
-```
-  ┌─────────────────────────────┐         ws://localhost:8787        ┌──────────────────────────┐
-  │  server/  (Node + ws + TS)  │  ───────────────────────────────▶ │  web/  (React + Vite)    │
-  │                             │   snapshot (history) on connect    │                          │
-  │  Simulator → RingBuffer     │   tick { metric, events } / 1s     │  useMetricsSocket()      │
-  │  broadcast() to all clients │ ◀───────── reconnect (backoff) ─── │   → KPI cards            │
-  └─────────────────────────────┘                                    │   → SVG line charts      │
-                                                                      │   → live event feed      │
-                                                                      └──────────────────────────┘
-```
+![Architecture](docs/architecture.svg)
 
 This is an **npm workspaces monorepo**:
 
