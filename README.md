@@ -70,3 +70,7 @@ Unit tests (Vitest) cover the `RingBuffer` and the `Simulator` — including tha
 ---
 
 Built as a portfolio project to demonstrate realtime front-end engineering end to end.
+
+## License
+
+Released under the [MIT License](LICENSE).

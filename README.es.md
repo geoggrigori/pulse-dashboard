@@ -70,3 +70,7 @@ Las pruebas unitarias (Vitest) cubren el `RingBuffer` y el `Simulator` — inclu
 ---
 
 Desarrollado como proyecto de portafolio para demostrar la ingeniería front-end en tiempo real de principio a fin.
+
+## Licencia
+
+Distribuido bajo la [Licencia MIT](LICENSE).
