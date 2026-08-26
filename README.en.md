@@ -6,7 +6,7 @@
 </div>
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:34D399,100:1987F0&height=200&section=header&text=Pulse&fontSize=54&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Realtime%20metrics%20dashboard%20over%20WebSocket&descAlignY=55&descSize=17" width="100%" alt="Pulse banner"/>
+  <img src="docs/screenshot.png" width="100%" alt="Pulse — realtime metrics dashboard"/>
 </div>
 
 <br/>
@@ -37,8 +37,6 @@
 <br/>
 
 > 💡 **npm workspaces monorepo.** `npm install && npm run dev` starts the WebSocket server and the front end together — dashboard at `localhost:5173`.
-
-![Pulse — realtime metrics dashboard](docs/screenshot.png)
 
 ## About
 
@@ -110,4 +108,4 @@ Covers `RingBuffer` and `Simulator` — including that every generated metric st
   <img src="https://file.loading.io/color/feature/thumb/Blues-8.png?" width="100%" height="10px" alt="divider"/>
 </div>
 
-<p align="center"><sub>Built by <strong><a href="https://github.com/geoggrigori">Grigori</a></strong> · Portfolio project · 2026</sub></p>
+<p align="center"><sub>Built by <strong><a href="https://github.com/geoggrigori">Grigori</a></strong> · 2026</sub></p>
