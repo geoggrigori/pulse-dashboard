@@ -1,76 +1,113 @@
-# Pulse ⚡ — Realtime Metrics Dashboard
+<!-- ══════════════════════ IDIOMAS / LANGUAGES ══════════════════════ -->
+<div align="center">
+<a href="README.md"><img src="https://img.shields.io/badge/Português-1987F0?style=for-the-badge" alt="Português"/></a>
+<a href="README.en.md"><img src="https://img.shields.io/badge/English-555555?style=for-the-badge" alt="English"/></a>
+<a href="README.es.md"><img src="https://img.shields.io/badge/Español-555555?style=for-the-badge" alt="Español"/></a>
+</div>
 
-**English** · [Português](README.pt.md) · [Español](README.es.md)
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:34D399,100:1987F0&height=200&section=header&text=Pulse&fontSize=54&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Dashboard%20de%20metricas%20em%20tempo%20real%20via%20WebSocket&descAlignY=55&descSize=17" width="100%" alt="Pulse banner"/>
+</div>
 
-A live operations dashboard that streams system metrics over **WebSockets** and renders them with **hand-built SVG charts** — no charting library. KPI cards with trend deltas, two live time-series charts, a streaming event feed, automatic reconnection, and a polished dark UI.
+<br/>
 
-> A focused demo of real-time front-end engineering: WebSocket data flow, rolling time-series state, custom data-viz, and resilient reconnection.
+<h1 align="center">Pulse — Dashboard de Métricas em Tempo Real</h1>
+<p align="center"><em>Métricas de operação ao vivo, via WebSocket, com gráficos SVG feitos à mão — sem lib de gráficos</em></p>
+<p align="center"><strong>Servidor WebSocket → stream de métricas → gráficos + KPIs ao vivo, com reconexão automática</strong></p>
 
-![status](https://img.shields.io/badge/realtime-WebSocket-34d399) ![stack](https://img.shields.io/badge/React-19-38bdf8) ![stack](https://img.shields.io/badge/Vite-6-646cff)
+<div align="center">
+<img src="https://img.shields.io/badge/Realtime-WebSocket-34D399?style=for-the-badge" alt="realtime"/>
+<img src="https://img.shields.io/badge/Zero_Chart_Libs-1987F0?style=for-the-badge" alt="zero libs"/>
+<br/>
+<img src="https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="react"/>
+<img src="https://img.shields.io/badge/Vite_6-646CFF?style=flat-square&logo=vite&logoColor=white" alt="vite"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="ts"/>
+<img src="https://img.shields.io/badge/Node.js_ws-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="node"/>
+<img src="https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="tailwind"/>
+</div>
 
----
+<div align="center">
+<a href="#sobre"><img src="https://img.shields.io/badge/▸_SOBRE-1987F0?style=for-the-badge" alt="sobre"/></a>
+<a href="#destaques"><img src="https://img.shields.io/badge/▸_DESTAQUES-000000?style=for-the-badge" alt="destaques"/></a>
+<a href="#arquitetura"><img src="https://img.shields.io/badge/▸_ARQUITETURA-1987F0?style=for-the-badge" alt="arquitetura"/></a>
+<a href="#tecnologias"><img src="https://img.shields.io/badge/▸_TECNOLOGIAS-000000?style=for-the-badge" alt="tech"/></a>
+<a href="#uso"><img src="https://img.shields.io/badge/▸_USO-1987F0?style=for-the-badge" alt="uso"/></a>
+</div>
 
-![Pulse — realtime metrics dashboard](docs/screenshot.png)
+<br/>
 
-## ✨ Highlights
+> 💡 **Monorepo com npm workspaces.** `npm install && npm run dev` sobe o servidor WebSocket e o front juntos — dashboard em `localhost:5173`.
 
-- **Live WebSocket stream** — a Node `ws` server pushes a metrics tick every second; the client renders it instantly.
-- **Hand-rolled SVG charts** — responsive line + area charts built from scratch (no Recharts/Chart.js), with non-scaling strokes and gradient fills.
-- **Rolling time-series state** — a custom React hook keeps a capped 120-point window and a 60-event feed, appending each tick efficiently.
-- **Resilient reconnection** — exponential backoff with a live connection indicator (Live / Connecting / Reconnecting).
-- **Trend deltas** — each KPI shows % change vs the previous tick, color-coded (and inverted for "lower is better" metrics like latency and error rate).
-- **Realistic simulator** — bounded random walks with correlated latency/error spikes and matching events; deterministic under an injected RNG (so it's testable).
-- **Dark, responsive UI** — Tailwind CSS v4, adapts from mobile to wide screens.
+![Pulse — dashboard de métricas em tempo real](docs/screenshot.png)
 
-## 🏗️ Architecture
+## Sobre
 
-![Architecture](docs/architecture.svg)
+**Pulse** é um dashboard de operações ao vivo que transmite métricas de sistema via **WebSocket** e renderiza tudo com **gráficos SVG feitos à mão** — sem nenhuma lib de charts. Cards de KPI com variação percentual, dois gráficos de série temporal ao vivo, feed de eventos em streaming, reconexão automática e UI escura e polida.
 
-This is an **npm workspaces monorepo**:
+Uma demonstração focada de engenharia front-end em tempo real: fluxo de dados via WebSocket, estado de série temporal com janela deslizante, visualização de dados construída do zero e reconexão resiliente.
 
-| Package | Responsibility |
-|---------|----------------|
-| `server/` | WebSocket server, metrics `Simulator`, `RingBuffer` history, broadcast loop |
-| `web/`    | React dashboard — `useMetricsSocket` hook, `LineChart`, `KpiCard`, `EventFeed` |
+## Destaques
 
-## 🚀 Getting started
+| Recurso | O que faz |
+|---|---|
+| **Stream WebSocket ao vivo** | Servidor Node (`ws`) envia uma métrica por segundo; o cliente renderiza instantaneamente |
+| **Gráficos SVG do zero** | Linha + área, responsivos, sem Recharts/Chart.js — stroke não-escalável e gradientes |
+| **Estado de série temporal** | Hook React custom mantém janela de 120 pontos e feed de 60 eventos, com append eficiente |
+| **Reconexão resiliente** | Backoff exponencial com indicador de conexão (Live / Conectando / Reconectando) |
+| **Deltas de tendência** | Cada KPI mostra variação % vs. o tick anterior, colorido (invertido para métricas "menor é melhor") |
+| **Simulador realista** | Random walk limitado com picos correlacionados de latência/erro; determinístico sob RNG injetado (testável) |
+
+## Arquitetura
+
+**Monorepo com npm workspaces:**
+
+| Pacote | Responsabilidade |
+|---|---|
+| `server/` | Servidor WebSocket, `Simulator` de métricas, histórico `RingBuffer`, loop de broadcast |
+| `web/` | Dashboard React — hook `useMetricsSocket`, `LineChart`, `KpiCard`, `EventFeed` |
+
+```mermaid
+flowchart LR
+    S[Simulator gera métricas] --> R[RingBuffer — histórico]
+    R --> B[Broadcast loop — 1 tick/s]
+    B -->|WebSocket| H[useMetricsSocket hook]
+    H --> K[KpiCard — deltas]
+    H --> L[LineChart — SVG feito à mão]
+    H --> E[EventFeed]
+```
+
+## Tecnologias
+
+| Camada | Tecnologia |
+|---|---|
+| Frontend | React 19, Vite 6, TypeScript, Tailwind CSS v4 |
+| Backend | Node, `ws`, TypeScript (`tsx`) |
+| Tooling | npm workspaces, `concurrently`, Vitest |
+
+## Uso
 
 ```bash
-# install both workspaces
 npm install
-
-# run the WebSocket server and the web app together
 npm run dev
 ```
 
-- Web app: **http://localhost:5173**
-- WebSocket server: **ws://localhost:8787**
+- App: **http://localhost:5173**
+- WebSocket: **ws://localhost:8787**
 
-Open the app and watch the metrics update live. Stop the server (`Ctrl+C`) to see the client flip to **Reconnecting…**, then restart it to watch it recover automatically.
+Pare o servidor (`Ctrl+C`) para ver o cliente mudar para **Reconectando…**, e reinicie para ver a recuperação automática.
 
-## 🧪 Tests
-
+**Testes:**
 ```bash
 npm test
 ```
+Cobrem `RingBuffer` e `Simulator` — inclusive que toda métrica gerada fica dentro dos limites em milhares de ticks, com saída determinística sob RNG fixo.
 
-Unit tests (Vitest) cover the `RingBuffer` and the `Simulator` — including that every generated metric stays within bounds over thousands of ticks and that output is deterministic under a fixed RNG.
+## Licença
 
-## 🛠️ Tech stack
+[MIT](LICENSE).
 
-- **Frontend:** React 19, Vite 6, TypeScript, Tailwind CSS v4
-- **Backend:** Node, `ws`, TypeScript (run with `tsx`)
-- **Tooling:** npm workspaces, `concurrently`, Vitest
+<div align="center">
+  <img src="https://file.loading.io/color/feature/thumb/Blues-8.png?" width="100%" height="10px" alt="divider"/>
+</div>
 
-## 📝 Notes
-
-- The metrics are **simulated** server-side — the point is the realtime pipeline and visualization, which would work identically against a real data source.
-- The charts are intentionally dependency-free to show the underlying math (scaling, path generation) rather than hide it behind a library.
-
----
-
-Built as a portfolio project to demonstrate realtime front-end engineering end to end.
-
-## License
-
-Released under the [MIT License](LICENSE).
+<p align="center"><sub>Desenvolvido por <strong><a href="https://github.com/geoggrigori">Grigori</a></strong> · Projeto de portfólio · 2026</sub></p>
