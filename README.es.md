@@ -20,10 +20,6 @@
 
 <br/>
 
-<h1 align="center">Pulse — Dashboard de Métricas en Tiempo Real</h1>
-<p align="center"><em>Métricas de operación en vivo vía WebSocket, con gráficos SVG hechos a mano — sin librería de gráficos</em></p>
-<p align="center"><strong>Servidor WebSocket → stream de métricas → gráficos + KPIs en vivo, con reconexión automática</strong></p>
-
 <div align="center">
 <img src="https://img.shields.io/badge/Realtime-WebSocket-34D399?style=for-the-badge" alt="realtime"/>
 <img src="https://img.shields.io/badge/Zero_Chart_Libs-1987F0?style=for-the-badge" alt="zero libs"/>
